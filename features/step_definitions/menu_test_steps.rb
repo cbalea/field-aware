@@ -35,3 +35,16 @@ Then(/^I click the (.*) button, the sub\-menu (.*) displayed$/) do |btn, option|
     expect(@homepage.sub_menu_visible?(btn)).to be false
   end
 end
+
+When(/^I click the (.*) button$/) do |btn|
+  @homepage.button_labeled(btn).click
+end
+
+And(/^the following links are displayed: (.*)$/) do |all_links|
+  all_links = all_links.split(", ")
+  all_links.class
+
+  all_links.each do |link|
+    @homepage.find_sub_menu_link(link).visible?
+  end
+end
