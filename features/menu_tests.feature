@@ -1,6 +1,6 @@
 Feature: FieldAware Menu Tests
 
-  Scenario: Menu buttons are displayed in the correct order
+  Scenario: Menu buttons inside the navigation widget are displayed in the correct order
     Given I load the FieldAware page
     Then the navigation widget is displayed
     And the menu buttons are displayed
