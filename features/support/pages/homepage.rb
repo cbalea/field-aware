@@ -40,24 +40,7 @@ module PageObjects
     end
 
     def find_sub_menu_link(label)
-      # simple find_link(title) throws Capybara::Ambiguous
-      if label.include?("'")
-
-        xpath = "//ul[@class='dropdown-menu']/..//a["
-
-        # escaping the ' characted in xpath is not working
-        # we will split the label into pieces and use xpath's contains() method
-        label_pieces = label.split("''")
-        label_pieces.each do |piece|
-          xpath += "contains(@title, '#{piece}') and "
-        end
-        xpath.chomp(" and ")  # remove unneeded trailing "and"
-        xpath += "]"          # close xpath
-
-        find(:xpath, xpath)
-      else
-        find(:xpath, "//ul[@class='dropdown-menu']/..//a[@title='#{label}']")
-      end
+        find(:xpath, '//ul[@class="dropdown-menu"]/..//a[@title="' + label + '"]')
     end
 
 
