@@ -46,7 +46,8 @@ module PageObjects
     end
 
     def element_is_positioned_before(first_element, last_element)
-      first_element.native.location.x.to_i < last_element.native.location.x.to_i
+      (first_element.native.location.x.to_i < last_element.native.location.x.to_i) or
+      (first_element.native.location.y.to_i < last_element.native.location.y.to_i)
     end
 
 

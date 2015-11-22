@@ -43,12 +43,12 @@ Feature: FieldAware Menu Tests
   Scenario Outline: Clicking on a the drop-down button displays correct links in the sub-menu
     Given I load the FieldAware page
     When I click the <submenu> button
-    And the following links are displayed: <links>
+    And the following links are displayed in the correct order: <links>
 
     Examples:
       |  submenu  |   links      |
-      |Product    | Why FieldAware, Asset Management, Business Intelligence, Mobile Applications, Scheduling and Dispatch, Improved Cash Flow, Customer Satisfaction, Service & Worker Productivity, ERP Integration, CRM Integration, Licensing Options, Implementation Services |
-      |Industry   | Agricultural Equipment, Commercial HVAC, Construction Equipment, Food Processing Equipment, Food Service Equipment, Heavy Equipment, Waste Management, Water Treatment |
+      |Product    | Why FieldAware, Asset Management, Business Intelligence, Mobile Applications, Scheduling and Dispatch, Work Order Management, Customer Portal, Barcode Scanner, Improved Cash Flow, Customer Satisfaction, Service & Worker Productivity, ERP Integration, CRM Integration, Licensing Options, Implementation Services |
+      |Industry   | Agricultural Equipment, Commercial HVAC, Construction Equipment, Food Processing Equipment, Food Service Equipment, Heavy Equipment, Medical Equipment, Telecom and Tower Erectors, Waste Management, Water Treatment |
       |Solutions  | Small Business, Mid Market, Enterprise, Business to Consumer, Business Executive, IT Executive, Operations, Field Engineer, NetSuite, QuickBooks, Salesforce.com, Fieldaware's Open API |
       |Resources  | Product Videos, Webinars, ROI Calculator, White Papers & eBooks, Events |
       |Company    | About FieldAware, Company News, Investors, Press Room, Contact Us, Leadership, Careers, Diversity & Inclusion |

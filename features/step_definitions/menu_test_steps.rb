@@ -50,8 +50,15 @@ When(/^I click the (.*) button$/) do |btn|
   @homepage.button_labeled(btn).click
 end
 
-And(/^the following links are displayed: (.*)$/) do |all_links|
-  all_links.split(", ").each do |link|
-    expect(@homepage.sub_menu_link(link).visible?).to be true
+And(/^the following links are displayed in the correct order: (.*)$/) do |all_links|
+  separate_links = all_links.split(", ")
+  for i in (0..separate_links.length-1)
+    expect(@homepage.sub_menu_link(separate_links[i]).visible?).to be true
+    if i < separate_links.length-1
+      expect(@homepage.element_is_positioned_before(
+                   @homepage.sub_menu_link(separate_links[i]),
+                   @homepage.sub_menu_link(separate_links[i+1])))
+            .to be true
+    end
   end
 end
