@@ -1,6 +1,6 @@
 Feature: FieldAware Menu Tests
 
-  Scenario: Menu buttons are displayed
+  Scenario: Menu buttons are displayed in the correct order
     Given I load the FieldAware page
     Then the navigation widget is displayed
     And the menu buttons are displayed
@@ -29,7 +29,7 @@ Feature: FieldAware Menu Tests
       |Clients      |
 
 
-  Scenario: Sub-menu show or hidden when clicking dropdown button
+  Scenario: Sub-menu is shown or hidden when clicking the dropdown button
     Given I load the FieldAware page
     When I click the Product button, the sub-menu is displayed
     Then I click the Product button, the sub-menu isn't displayed
@@ -40,7 +40,7 @@ Feature: FieldAware Menu Tests
     When I click the Clients button, the sub-menu isn't displayed
 
 
-  Scenario Outline: Clicking on a the drop-down button displays correct links in the sub-menu
+  Scenario Outline: Clicking on a the drop-down button displays sub-menu links in the correct order
     Given I load the FieldAware page
     When I click the <submenu> button
     And the following links are displayed in the correct order: <links>
