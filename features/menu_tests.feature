@@ -4,6 +4,7 @@ Feature: FieldAware Menu Tests
     Given I load the FieldAware page
     Then the navigation widget is displayed
     And the menu buttons are displayed
+    And the menu buttons are in the correct order
 
 
   Scenario Outline: Buttons corresponding to sub-menus have a dropdown arrow
@@ -51,5 +52,3 @@ Feature: FieldAware Menu Tests
       |Solutions  | Small Business, Mid Market, Enterprise, Business to Consumer, Business Executive, IT Executive, Operations, Field Engineer, NetSuite, QuickBooks, Salesforce.com, Fieldaware's Open API |
       |Resources  | Product Videos, Webinars, ROI Calculator, White Papers & eBooks, Events |
       |Company    | About FieldAware, Company News, Investors, Press Room, Contact Us, Leadership, Careers, Diversity & Inclusion |
-
-#  TODO: verify category headings in sub-menus; ie: Product - Features

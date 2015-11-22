@@ -16,8 +16,18 @@ And(/^the menu buttons are displayed$/) do
   @homepage.wait_until_clients_button_visible
   @homepage.wait_until_resources_button_visible
   @homepage.wait_until_company_button_visible
+  @homepage.wait_until_get_a_demo_button_visible
 end
 ### end of SitePrism section ###
+
+And(/^the menu buttons are in the correct order$/) do
+  expect(@homepage.element_is_positioned_before(@homepage.product_button, @homepage.industry_button)).to be true
+  expect(@homepage.element_is_positioned_before(@homepage.industry_button, @homepage.solutions_button)).to be true
+  expect(@homepage.element_is_positioned_before(@homepage.solutions_button, @homepage.clients_button)).to be true
+  expect(@homepage.element_is_positioned_before(@homepage.clients_button, @homepage.resources_button)).to be true
+  expect(@homepage.element_is_positioned_before(@homepage.resources_button, @homepage.company_button)).to be true
+  expect(@homepage.element_is_positioned_before(@homepage.company_button, @homepage.get_a_demo_button)).to be true
+end
 
 Then(/^the (.*) button (.*) a dropdown arrow$/) do |btn, option|
   if option == "has"
@@ -41,10 +51,7 @@ When(/^I click the (.*) button$/) do |btn|
 end
 
 And(/^the following links are displayed: (.*)$/) do |all_links|
-  all_links = all_links.split(", ")
-  all_links.class
-
-  all_links.each do |link|
-    @homepage.find_sub_menu_link(link).visible?
+  all_links.split(", ").each do |link|
+    expect(@homepage.sub_menu_link(link).visible?).to be true
   end
 end

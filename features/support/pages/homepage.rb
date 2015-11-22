@@ -16,6 +16,7 @@ module PageObjects
     element :clients_button, :xpath, "//a[@title='Clients']"
     element :resources_button, :xpath, "//a[@title='Resources']"
     element :company_button, :xpath, "//a[@title='Company']"
+    element :get_a_demo_button, :xpath, "//button[contains(text(), 'Get a Demo')]"
     ### end of SitePrism section ###
 
     def button_labeled(label)
@@ -39,8 +40,13 @@ module PageObjects
       end
     end
 
-    def find_sub_menu_link(label)
-        find(:xpath, '//ul[@class="dropdown-menu"]/..//a[@title="' + label + '"]')
+    def sub_menu_link(label)
+      # a simple find_link throws Ambiguity error
+      find(:xpath, '//ul[@class="dropdown-menu"]/..//a[@title="' + label + '"]')
+    end
+
+    def element_is_positioned_before(first_element, last_element)
+      first_element.native.location.x.to_i < last_element.native.location.x.to_i
     end
 
 
