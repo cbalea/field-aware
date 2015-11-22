@@ -1,6 +1,6 @@
 # field-aware
 
-Menu tests for FieldAware.com
+## Menu tests for FieldAware.com
 
 Pre-requisites for setting up the framework:
 - Ruby installed: version 2.1.0 or newer
