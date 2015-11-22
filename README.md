@@ -10,7 +10,7 @@
 - from the Terminal, navigate to the root folder where the project was checked out and execute: bundle install
 
 ### Running the tests:
-- from the Terminal, navigate to the root folder where the project was checked out and execute: cucumner
+- from the Terminal, navigate to the root folder where the project was checked out and execute: cucumber
 
 ### Evaluating test results:
 - from the features/reports/ folder, open the report.html file
