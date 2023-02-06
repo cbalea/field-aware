@@ -4,6 +4,7 @@ require 'capybara/cucumber'
 require 'selenium-webdriver'
 require 'site_prism'
 require 'capybara-screenshot/cucumber'
+require 'webdrivers'
 
 require_relative 'test_constants'
 
@@ -11,8 +12,7 @@ World(TestConstants)
 
 def get_driver
   client = Selenium::WebDriver::Remote::Http::Default.new
-  client.timeout = 60 # seconds: timeout for wait while url loads
-
+  client.open_timeout = 60 # seconds: timeout for wait while url loads
 
   Capybara.configure do |config|
     config.default_driver = :selenium
@@ -23,7 +23,7 @@ def get_driver
   end
 
   Capybara.register_driver :selenium do |app|
-    Capybara::Selenium::Driver.new(app, :browser => :firefox, :http_client => client)
+    Capybara::Selenium::Driver.new(app, :browser => :chrome, :http_client => client)
   end
 
   window = Capybara.current_session.driver.browser
@@ -37,7 +37,7 @@ end
 def take_screenshot
   Capybara::Screenshot.final_session_name = nil
   Capybara::Screenshot.autosave_on_failure = true
-  Capybara.save_and_open_page_path = "features/reports"
+  # Capybara.save_and_open_page_path = "features/reports"
 end
 
 After do |scenario|
