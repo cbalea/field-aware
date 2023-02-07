@@ -1,18 +1,17 @@
 require 'capybara'
 require 'capybara/dsl'
-require 'rspec/expectations'
 
 module PageObjects
 
   class Homepage
     include Capybara::DSL
 
-    def nav_bar; find(:id, "masthead"); end
-    def get_a_demo_button; find(:xpath, "//li[@id='masthead-menu-items-demo']/descendant::span[contains(text(), 'Get a Demo')]"); end
-    def platform_tour_button; find(:xpath, "//li[@id='masthead-menu-items-tour']/a"); end
-    def find_your_solution_button; find(:xpath, "//li[@id='masthead-menu-items-solution']/a"); end
-    def button_labeled(label); find(:xpath, "//div[@class='uk-navbar-right']/descendant::a/span[contains(text(), '" + label + "')]/parent::a"); end
-    def sub_menu(parent_label); find(:xpath, "//span[contains(text(), '" + parent_label + "')]/parent::a/following-sibling::div[contains(@class, 'uk-navbar-dropdown')]"); end
+    private def nav_bar; find(:id, "masthead"); end
+    private def get_a_demo_button; find(:xpath, "//li[@id='masthead-menu-items-demo']/descendant::span[contains(text(), 'Get a Demo')]"); end
+    private def platform_tour_button; find(:xpath, "//li[@id='masthead-menu-items-tour']/a"); end
+    private def find_your_solution_button; find(:xpath, "//li[@id='masthead-menu-items-solution']/a"); end
+    private def button_labeled(label); find(:xpath, "//div[@class='uk-navbar-right']/descendant::a/span[contains(text(), '" + label + "')]/parent::a"); end
+    private def sub_menu(parent_label); find(:xpath, "//span[contains(text(), '" + parent_label + "')]/parent::a/following-sibling::div[contains(@class, 'uk-navbar-dropdown')]"); end
 
     def load_page
       visit TestConstants.url
