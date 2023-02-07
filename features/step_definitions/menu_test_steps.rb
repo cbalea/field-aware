@@ -1,39 +1,22 @@
 Given(/^I load the FieldAware page$/) do
   @homepage = PageObjects::Homepage.new
-  @homepage.load
+  @homepage.load_page
 end
 
-### this section is written to demonstrate usage of the SitePrism ruby gem #######
-###  see https://github.com/natritmeyer/site_prism#summary-of-what-the-element-method-provides
 Then(/^the navigation widget is displayed$/) do
-  @homepage.wait_until_nav_bar_visible
+  expect(@homepage).to have_loaded
 end
-
-And(/^the menu buttons are displayed$/) do
-  @homepage.wait_until_product_button_visible
-  @homepage.wait_until_industry_button_visible
-  @homepage.wait_until_solutions_button_visible
-  @homepage.wait_until_clients_button_visible
-  @homepage.wait_until_resources_button_visible
-  @homepage.wait_until_company_button_visible
-  @homepage.wait_until_get_a_demo_button_visible
-end
-### end of SitePrism section ###
 
 And(/^the menu buttons are in the correct order$/) do
-  expect(@homepage.element_is_positioned_before(@homepage.product_button, @homepage.industry_button)).to be true
-  expect(@homepage.element_is_positioned_before(@homepage.industry_button, @homepage.solutions_button)).to be true
-  expect(@homepage.element_is_positioned_before(@homepage.solutions_button, @homepage.clients_button)).to be true
-  expect(@homepage.element_is_positioned_before(@homepage.clients_button, @homepage.resources_button)).to be true
-  expect(@homepage.element_is_positioned_before(@homepage.resources_button, @homepage.company_button)).to be true
-  expect(@homepage.element_is_positioned_before(@homepage.company_button, @homepage.get_a_demo_button)).to be true
+  expect(@homepage.element_is_positioned_before(@homepage.get_a_demo_button, @homepage.platform_tour_button)).to be true
+  expect(@homepage.element_is_positioned_before(@homepage.platform_tour_button, @homepage.find_your_solution_button)).to be true
 end
 
-Then(/^the (.*) button (.*) a dropdown arrow$/) do |btn, option|
-  if option == "has"
-    expect(@homepage.button_has_dropdown_arrow?(btn)).to be true
-  elsif option == "doesn't have"
-    expect(@homepage.button_has_dropdown_arrow?(btn)).to be false
+Then(/^the (.*) button (.*) expand a sub-menu$/) do |btn, option|
+  if option == "can"
+    expect(@homepage.can_expand_submenu?(btn)).to be true
+  elsif option == "can't"
+    expect(@homepage.can_expand_submenu?(btn)).to be false
   end
 end
 

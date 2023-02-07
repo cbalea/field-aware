@@ -2,7 +2,6 @@ require 'rspec/expectations'
 require 'capybara'
 require 'capybara/cucumber'
 require 'selenium-webdriver'
-require 'site_prism'
 require 'capybara-screenshot/cucumber'
 require 'webdrivers'
 
@@ -12,12 +11,11 @@ World(TestConstants)
 
 def get_driver
   client = Selenium::WebDriver::Remote::Http::Default.new
-  client.open_timeout = 60 # seconds: timeout for wait while url loads
+  client.open_timeout = 60 # seconds: timeout on wait for the url to load
 
   Capybara.configure do |config|
     config.default_driver = :selenium
-    config.default_max_wait_time = 10 # maximum time to wait for an element to be visible before interacting with it
-    config.app_host = TestConstants.url
+    config.default_max_wait_time = 10 # seconds: maximum time to wait for an element to be visible before interacting with it
     config.run_server = false
     config.ignore_hidden_elements = false
   end

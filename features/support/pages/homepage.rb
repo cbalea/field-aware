@@ -1,35 +1,29 @@
-require 'site_prism'
+require 'capybara'
+require 'capybara/dsl'
+require 'rspec/expectations'
 
 module PageObjects
 
-  class Homepage < SitePrism::Page
+  class Homepage
+    include Capybara::DSL
 
-    ### this section is written to demonstrate usage of the SitePrism ruby gem #######
-    ###  see https://github.com/natritmeyer/site_prism#summary-of-what-the-element-method-provides
-    set_url "{url}"
+    def nav_bar; find(:id, "masthead"); end
+    def get_a_demo_button; find(:xpath, "//li[@id='masthead-menu-items-demo']/descendant::span[contains(text(), 'Get a Demo')]"); end
+    def platform_tour_button; find(:xpath, "//li[@id='masthead-menu-items-tour']/a"); end
+    def find_your_solution_button; find(:xpath, "//li[@id='masthead-menu-items-solution']/a"); end
+    def button_labeled(label); find(:xpath, "//div[@class='uk-navbar-right']/descendant::a/span[contains(text(), '" + label + "')]/parent::a"); end
+    def sub_menu(parent_label); find(:xpath, "//span[contains(text(), '" + parent_label + "')]/parent::a/following-sibling::div[contains(@class, 'uk-navbar-dropdown')]"); end
 
-    element :nav_bar, :xpath, "//ul[@class='nav navbar-nav pull-right-sm']"
-
-    element :product_button, :xpath, "//a[@title='Product']"
-    element :industry_button, :xpath, "//a[@title='Industry']"
-    element :solutions_button, :xpath, "//a[@title='Solutions']"
-    element :clients_button, :xpath, "//a[@title='Clients']"
-    element :resources_button, :xpath, "//a[@title='Resources']"
-    element :company_button, :xpath, "//a[@title='Company']"
-    element :get_a_demo_button, :xpath, "//button[contains(text(), 'Get a Demo')]"
-    ### end of SitePrism section ###
-
-    def button_labeled(label)
-      find_link(label)
+    def load_page
+      visit TestConstants.url
     end
 
-    def button_has_dropdown_arrow? (button)
-      menu_btn = button_labeled(button)
-      return menu_btn["data-toggle"] == "dropdown"
+    def has_loaded?
+      nav_bar.visible?
     end
 
-    def sub_menu(menu)
-      find(:xpath, "//a[@title='#{menu}']/following-sibling::ul[@class='dropdown-menu']")
+    def can_expand_submenu? (label)
+      return button_labeled(label)["aria-expanded"] != nil
     end
 
     def sub_menu_visible?(menu)
