@@ -1,10 +1,12 @@
 require 'capybara'
 require 'capybara/dsl'
+require 'rspec/expectations'
 
 module PageObjects
 
   class Homepage
     include Capybara::DSL
+    include RSpec::Matchers # to be able to access expect() in page objects
 
     private def nav_bar; find(:id, "masthead"); end
     private def get_a_demo_button; find(:xpath, "//li[@id='masthead-menu-items-demo']/descendant::span[contains(text(), 'Get a Demo')]"); end
